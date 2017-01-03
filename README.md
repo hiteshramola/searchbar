@@ -36,4 +36,4 @@ Here's how to use:
 </script>
 ```
 
-#Note: This is only the UI for a search bar not with the functionality of searching.
+>Note: This is only the UI for a search bar not with the functionality of searching.
