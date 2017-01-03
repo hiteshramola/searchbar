@@ -1,0 +1,318 @@
+.row {
+    max-width: 100% !important;
+}
+span{
+	color: #c2c2c2;
+}
+
+/* SEARCH */
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #f1f1f1;
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.searchbox.open ~ .overlay {
+	opacity: 1;
+	z-index: 999;
+}
+
+.searchbox {	
+	width: 0px; /* If you don't want the expanding bar */
+	width: 100%;
+	min-height: 0px;
+	background: #f1f1f1;
+	position: absolute;
+	z-index: 10000;
+	top: 25%;
+	right: 0;
+	-webkit-transform-origin: 100% 0;
+	transform-origin: 100% 0;
+	-webkit-transition-property: min-height, width, top, right;
+	transition-property: min-height, width, top, right;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.searchbox.open {
+	width: 100%;
+	min-height: 100%;
+	top: 35vh;
+	top: 0vh;
+	right: 0px;
+	position: fixed;
+	overflow: auto;
+}
+
+.searchbox-form {
+	width: 10%;
+	height: 30px;
+	margin: 0 auto;
+	position: relative;
+	-webkit-transition-property: width, height, -webkit-transform;
+	transition-property: width, height, transform;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.searchbox-form span{
+	font-size: 0em;
+	transition: font-size 1s ease-in-out;
+	opacity: 0;
+}
+.searchbox.open .searchbox-form {
+	width: 80%;
+	height: 160px;
+	-webkit-transform: translate3d(0,3em,0);
+	transform: translate3d(0,3em,0);
+}
+
+.searchbox.open .searchbox-form span{
+	opacity: 1;
+	float: left;
+	font-size: 2.6em;
+	margin-top: 2rem;
+}
+
+input.searchbox-input, input.searchbox-input:focus {
+	width: 100%;
+	height: 100%;
+	padding: .5rem 7.5rem .25rem 0;
+	font-weight: 700;
+	border: none;
+	border-bottom: 1px solid #c2c2c2;
+	background: transparent;
+	font-size: 0.8em;
+	color: #c2c2c2;
+	box-shadow: none;
+	-webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+	transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+	opacity: 0; /* If you don't want the input search bar for   */
+	opacity: 1;
+}
+
+input.searchbox-input::-ms-clear { /* remove cross in IE */
+    display: none;
+}
+
+input.searchbox.hideInput input.searchbox-input {
+	color: transparent;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.searchbox.open input.searchbox-input {
+	font-size: 7em;
+	opacity: 1;
+}
+
+/* placeholder */
+input.searchbox-input::-webkit-input-placeholder, input.searchbox-input:-moz-placeholder, input.searchbox-input::-moz-placeholder, input.searchbox-input:-ms-input-placeholder {
+	color: #c2c2c2;
+}
+
+/* hide placeholder when active in Chrome */
+.gn-search:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+input.searchbox-input:focus,
+.searchbox-submit:focus {
+	outline: none;
+	color: #7ec559;
+	background: transparent;
+}
+
+.searchbox-close {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	right: 3em;
+	top: 3vh;
+	overflow: hidden;
+	text-indent: 100%;
+	cursor: pointer;
+	pointer-events: none;
+	opacity: 0;
+	-webkit-transform: scale3d(0,0,1);
+	transform: scale3d(0,0,1);
+}
+
+.searchbox.open .searchbox-close {
+	opacity: 1;
+	pointer-events: auto;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.searchbox-close::before,
+.searchbox-close::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	top: 0;
+	left: 50%;
+	border-radius: 3px;
+	opacity: 0.2;
+	background: #000;
+}
+
+.searchbox-close:hover.searchbox-close::before,
+.searchbox-close:hover.searchbox-close::after {
+	opacity: 1;
+}
+
+.searchbox-close::before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.searchbox-close::after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.searchbox-submit{
+	position: absolute;
+	width: 20px;
+	height: 20px;	
+	text-indent: 100px;
+	overflow: hidden;
+	right: 5%;
+	top: 15%;
+	background: transparent url(magnifier.svg) no-repeat center center;
+	background-size: 100%;
+	border: none;
+/*	pointer-events: none;*/
+	transform-origin: 50% 50%;
+	opacity: 1;
+	cursor: s-resize;
+}
+
+.searchbox.open .searchbox-submit {
+	width: 80px;
+	height: 80px;
+	pointer-events: auto;
+	opacity: 1;
+	top: 5rem;
+	-webkit-transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
+	transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
+	-webkit-transition: width 0.3s, -webkit-transform 0.3s;
+	transition: width 0.3s, transform 0.3s;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+
+.searchbox-content {
+	color: #333;
+	margin-top: 20em;
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	padding: 0 10.5%;
+	background: #f1f1f1;
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.searchbox-content a{
+	padding: 0 !important;
+}
+
+.searchbox.open .searchbox-content {
+	opacity: 1;
+	height: auto;
+	overflow: visible; /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
+	pointer-events: auto;
+	-webkit-transition: opacity 0.3s 0.5s;
+	transition: opacity 0.3s 0.5s;
+}
+
+
+.result_srch{
+	opacity: 0;
+	display: none
+}
+
+/* SEARCH BOX END */
+
+
+
+
+
+
+@media screen and (max-width: 60.625em) {
+	.searchbox {
+		width: 80%;
+		top: 10%;
+		right: 10%;
+	}
+	
+.signincontainer .label {
+	font-size: 12px !important;
+}
+.button {
+    font-size: 0.8rem !important;
+}
+
+.searchbox.open .searchbox-form {
+    height: 40px !important;
+}
+.searchbox-input {
+	padding: 0 25% 0 10px !important;
+}
+.searchbox.open .searchbox-input {
+	font-size: 2em !important;
+}
+.searchbox.open .searchbox-submit {
+	-webkit-transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1) !important;
+	transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1) !important;
+}
+.searchbox.open .searchbox-form {
+    margin-top: 2rem;
+}
+.searchbox.open .searchbox-submit {
+    width: 40px !important;
+    height: 40px !important;
+    top: 1rem !important;
+}
+.searchbox-input:focus, .searchbox-submit:focus {
+    padding-right: 25% !important;
+}
+.searchbox.open .searchbox-form span {
+    font-size: 1.6em !important;
+    margin-top: 1rem !important;
+}
+.searchbox-form {
+	width: 100%;
+}
+.searchbox-content {
+    margin-top: 15em !important;
+}
+.searchbox-submit {
+    top: 7px !important;
+}
+input.searchbox-input {
+    opacity: 1 !important;
+}
+}
