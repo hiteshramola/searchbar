@@ -1,5 +1,7 @@
 # searchbar
 
+searchbar html js css.
+
 A simple jquery search bar. Just add single div css and js and you are good to go
 credits goes to Mary Lou for creating such a beautiful element here's the link - https://tympanus.net/codrops/2014/11/04/simple-morphing-search/.
 
@@ -33,3 +35,5 @@ Here's how to use:
         jQuery(document).ready(function($){init_search();});
 </script>
 ```
+
+#Note: This is only the UI for a search bar not with the functionality of searching.
